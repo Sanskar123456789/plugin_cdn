@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    </head>
+    <style>
+        #_bftn_iframe {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -10000;
+}
+</style>
+<script>
+    var _retrotax_options = {
+                iframe_base_path: 'https://cdn-qa.retrotax-aci.com/dist/widget/iframe',  //http://plugin.retrotax-aci.com/widget/iframe',
+                debug: false,
+                language_setting: 'en',
+                username: 'plugin',
+                password: '5Av!4wq&t&&TsWoxC*',
+                x_api_key: 'yqvNrVR5Cs6vhLq1ZRPq38GM5OrXJ7C97n4BZCJa',
+                button_class:"btn btn-huge btn-info",
+                button_text:"Open RetroTax Screening Plugin",
+                plugin_type: 'ats', 
+                callback_url:'',
+                auto_login_code: '78493473c8ddaea1d3ad18ef988b4b71b68a574e336433271b21685d576dd0cfd9534a5e8bbbccefb3e45ec9dad11efa1709cfb4dc3d25e5c7357a091d7e65e0',
+                prepopulate_by:'id',
+                populated_fields: {
+                    first_name: "firstName",
+                    last_name: "lastName",
+                    suffix:"suffix",
+                    city: "city",
+                    state: "state",
+                    zip: "zipcode",
+                    address_line_1: "address",
+                    address_line_2: "address2",
+                    county: "",
+                    dob: "dateOfBirth",
+                    ssn:"ssn",
+                    email:"emailAddress"
+                },
+                hide_fields: 'false',
+                readonly_fields: 'false',
+                language_setting: 'en',
+                hide_hm_section: true,
+                hiring_manager_fields:{
+                   occupation_id: '',
+                   starting_wage: '',
+                   dgi: '',
+                   dojo: '',
+                   doh: '',
+                   dsw: '',
+                   hm_name:"Hiring Manager Name",
+                   hm_title:"Hiring Manager"
+               },
+//                 onClose: function(result){
+//                   if(result && result.success){
+//                     //Every went ok, I can close my window
+//                     console.log(" employee saved", result);
+//                   } else {
+//                     //Something went wrong
+//                     console.log(" employee is not saved", result);
+//                   }
+//                 },
+               use_default_position: true,
+               use_default_starting_wage: true,
+                button_class:'btn btn-primary',
+                button_text:'Open RetroTax Credit Screening Form',
+                button_class_error:'btn btn-danger',
+                button_text_error:'Oh snap, an error!',
+                logo:''
+};
+</script>
+<!-- src="./retrotax_plugin.js"  -->
+<script type="text/javascript" 
+src="https://cdn-qa.retrotax-aci.com/dist/retrotax_plugin.min.js"
+></script>
+<script>
+    function changeColor(event,field){
+        let color = event.target.value.split('#')[1]
+        _retrotax_options[field] = color;
+    }
+    function change(field){
+        _retrotax_options.prepopulate_by= field;
+    }
+    function defaultchange(field){
+        console.log('default change', field);
+        if(_retrotax_options[field]== "true"){
+            _retrotax_options[field]= "false";
+        }else{
+            _retrotax_options[field]= "true"
+        }
+        console.log(_retrotax_options);
+    }
+</script>
+<body >
+    <div id="retrotax_plugin"></div>
+    <br>
+    <div style="display: flex;">
+        <div style="border: 1px solid; width: max-content;padding: 12px;margin: 12px;">
+            <h3>Prepopulate By</h3>
+            Id : <input type="radio" name="pop" value="id" onchange="change('id')">
+            Name : <input type="radio" name="pop" value="name" onclick="change('name')">
+        </div>
+        <div style="border: 1px solid; width: max-content;padding: 12px; margin: 12px;">
+            <h3>Prepopulate By</h3>
+            Default Wage : <input type="checkbox" value="true" checked="true" onclick="defaultchange('use_default_starting_wage')">
+            Default Position : <input type="checkbox" value="true" checked="true" onclick="defaultchange('use_default_position')">
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div style="width: 30%;">
+            <h2>CDN Testing By id</h2>
+            <br>
+            First name : <input type="text" value="DEMO" id="first_name">
+            <br>
+            <br>
+            Last name : <input type="text" value="DEMO" id="last_name">
+            <br>
+            <br>
+            Suffix :<input type="text" value="Jr" id="suffix">
+            <br>
+            <br>
+            City : <input type="text" value="DEMO" id="city">
+            <br>
+            <br>
+            SSN : <input type="text" value="111111111" id="ssn">
+            <br>
+            <br>
+            State : <input type="text" value="NY" id="state">
+            <br>
+            <br>
+            DOB : <input type="text" value="1/1/2006" id="dob">
+            <br>
+            <br>
+            Address Line 1 : <input type="text" value="DEMO" id="address_line_1">
+            <br>
+            <br>
+            Address Line 2 : <input type="text" value="DEMO" id="address_line_2">
+            <br>
+            <br>
+            ZIP : <input type="text" value="11111" id="zip">
+        </div>
+        <div style="width: 30%;">
+            <h2>CDN Testing By name</h2>
+            <br>
+            First name : <input type="text" value="DEMO" name="first_name">
+            <br>
+            <br>
+            Last name : <input type="text" value="DEMO" name="last_name">
+            <br>
+            <br>
+            Suffix :<input type="text" value="Jr" name="suffix">
+            <br>
+            <br>
+            City : <input type="text" value="DEMO" name="city">
+            <br>
+            <br>
+            SSN : <input type="text" value="111111111" name="ssn">
+            <br>
+            <br>
+            State : <input type="text" value="NY" name="state">
+            <br>
+            <br>
+            DOB : <input type="text" value="1/1/2007" name="dob">
+            <br>
+            <br>
+            Address Line 1 : <input type="text" value="DEMO" name="address_line_1">
+            <br>
+            <br>
+            Address Line 2 : <input type="text" value="DEMO" name="address_line_2">
+            <br>
+            <br>
+            ZIP : <input type="text" value="11111" name="zip">
+        </div>
+        <div style="width: 35%;">
+            <h2>Color Testing</h2>
+            <br>
+            Head Color : <input type="color" value="FFFFFF" oninput="changeColor(event,'head_color')">
+            <br>
+            <br>
+            Panel Color : <input type="color" value="FFFFFF" oninput="changeColor(event,'panel_color')">
+            <br>
+            <br>
+            Text Color : <input type="color" value="000000" oninput="changeColor(event,'text_color')">
+            <br>
+            <br>
+            Error Color : <input type="color" value="c0392b" oninput="changeColor(event,'error_color')">
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
